@@ -1,10 +1,13 @@
 package com.accenture.employee_service.repository;
 
 import com.accenture.employee_service.model.Employee;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+@Repository
 public class EmployeeRepository {
 
     private List<Employee> employees = new ArrayList<>();
@@ -15,11 +18,10 @@ public class EmployeeRepository {
         return employee;
     }
 
-    public Employee findById(Long id) {
+    public Optional<Employee> findById(Long id) {
         return employees.stream()
                 .filter(a -> a.getId().equals(id))
-                .findFirst()
-                .orElseThrow();
+                .findFirst();
     }
 
     public List<Employee> findAll() {
